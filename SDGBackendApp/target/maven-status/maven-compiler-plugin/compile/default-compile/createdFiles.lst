@@ -1,2 +1,8 @@
-com\example\BasicApplication.class
+com\example\controller\AuthController.class
 com\example\controller\HealthController.class
+com\example\controller\UserController.class
+com\example\dto\LoginRequest.class
+com\example\BasicApplication.class
+com\example\dto\AuthResponse.class
+com\example\dto\RegisterRequest.class
+com\example\service\UserService.class
