@@ -32,7 +32,7 @@ public class UserAuthService implements UserDetailsService {
                         -> new UsernameNotFoundException("User Not Found"));
 
         List<GrantedAuthority> authorities = List.of(
-                new SimpleGrantedAuthority("ROLE_" + u.getRole())
+                new SimpleGrantedAuthority(u.getRole())
         );
 
         return new User(u.getUsername(), u.getPassword(), authorities);

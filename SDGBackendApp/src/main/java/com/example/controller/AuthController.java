@@ -57,7 +57,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
+    public Map<String, Object> login(@RequestBody LoginRequest request) {
+        Map<String, Object> response = new HashMap<>();
+
         try {
             Authentication auth = authMgr.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -71,10 +73,17 @@ public class AuthController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("role", userDetails.getAuthorities().iterator().next().getAuthority());
 
-            return jwtUtil.generateToken(userDetails, claims);
+            String token = jwtUtil.generateToken(userDetails, claims);
+
+            response.put("token", token);
+            response.put("role", claims.get("role"));
+            response.put("status", "Success");
 
         } catch (AuthenticationException e) {
-            throw new RuntimeException("Invalid username or password");
+            response.put("status", "Error");
+            response.put("message", "Invalid Username or Password");
         }
+
+        return response;
     }
 }
