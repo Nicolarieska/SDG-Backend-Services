@@ -52,8 +52,8 @@ public class UserService {
 
         UserDetails userDetails = uds.loadUserByUsername(user.getUsername());
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole()); 
-        
+        claims.put("role", user.getRole());
+
         String token = jwtUtil.generateToken(userDetails, claims);
 
         Map<String, Object> response = new HashMap<>();

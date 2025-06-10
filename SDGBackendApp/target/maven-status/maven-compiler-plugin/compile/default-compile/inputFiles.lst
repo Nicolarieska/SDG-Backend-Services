@@ -1,10 +1,14 @@
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\controller\HealthController.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\dto\AuthResponse.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\dto\LoginRequest.java
+F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\model\Category.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\repository\UserRepository.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\service\UserService.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\utils\JwtUtil.java
+F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\repository\CategoryRepository.java
+F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\controller\CategoryController.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\dto\RegisterRequest.java
+F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\service\CategoryService.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\BasicApplication.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\controller\AuthController.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\controller\UserController.java
@@ -12,3 +16,4 @@ F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\mo
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\config\SecurityConfig.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\service\UserAuthService.java
 F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\utils\JwtRequestFilter.java
+F:\NICOLA\BOOTCAMP\SDGBackendServices\SDGBackendApp\src\main\java\com\example\dto\CategoryRequest.java
