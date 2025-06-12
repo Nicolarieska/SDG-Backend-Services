@@ -37,28 +37,39 @@ public class UserService {
     private UserDetailsService uds;
 
     public Map<String, Object> register(RegisterRequest request) {
-        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            throw new RuntimeException("Username is already taken");
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+                response.put("message", "Username is already taken");
+                response.put("success", false);
+                return response;
+            }
+
+            User user = new User();
+            user.setName(request.getName());
+            user.setPhone(request.getPhone());
+            user.setUsername(request.getUsername());
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+            user.setRole("user");
+
+            userRepository.save(user);
+
+            UserDetails userDetails = uds.loadUserByUsername(user.getUsername());
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("role", user.getRole());
+
+            String token = jwtUtil.generateToken(userDetails, claims);
+
+            response.put("message", "User Registered Successfully");
+            response.put("token", token);
+            response.put("success", true);
+        } catch (Exception e) {
+            response.put("message", "Registration Failed: " + e.getMessage());
+            response.put("success", false);
         }
 
-        User user = new User();
-        user.setName(request.getName());
-        user.setPhone(request.getPhone());
-        user.setUsername(request.getUsername());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole("user");
-
-        userRepository.save(user);
-
-        UserDetails userDetails = uds.loadUserByUsername(user.getUsername());
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole());
-
-        String token = jwtUtil.generateToken(userDetails, claims);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "User Registered Successfully");
-        response.put("token", token);
         return response;
     }
+
 }

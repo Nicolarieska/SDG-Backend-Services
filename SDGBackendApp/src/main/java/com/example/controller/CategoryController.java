@@ -25,31 +25,34 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Asus
  */
 @RestController
-@RequestMapping("/admin/categories")
-@PreAuthorize("hasRole('admin')")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
+    @PreAuthorize("hasRole('admin')")
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody CategoryRequest request) {
         Category category = categoryService.createCategory(request);
         return ResponseEntity.ok(category);
     }
 
+    @PreAuthorize("hasAnyRole('admin', 'user')")
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
         return ResponseEntity.ok(categories);
     }
 
+    @PreAuthorize("hasRole('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
     }
 
+    @PreAuthorize("hasRole('admin')")
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateCategory(@PathVariable int id,
             @RequestBody CategoryRequest request) {
@@ -57,6 +60,7 @@ public class CategoryController {
         return ResponseEntity.ok(updatedCategory);
     }
 
+    @PreAuthorize("hasRole('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable int id) {
         categoryService.deleteCategory(id);

@@ -4,11 +4,17 @@
  */
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -39,6 +45,16 @@ public class User {
 
     @Column(nullable = false)
     private String role;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("userDeposit")
+    private List<TrashDeposit> userDeposit = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "approver", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("adminDeposit")
+    private List<TrashDeposit> adminDeposit = new ArrayList<>();
 
     public User() {
 
@@ -90,6 +106,22 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<TrashDeposit> getUserDeposit() {
+        return userDeposit;
+    }
+
+    public void setUserDeposit(List<TrashDeposit> userDeposit) {
+        this.userDeposit = userDeposit;
+    }
+
+    public List<TrashDeposit> getAdminDeposit() {
+        return adminDeposit;
+    }
+
+    public void setAdminDeposit(List<TrashDeposit> adminDeposit) {
+        this.adminDeposit = adminDeposit;
     }
 
 }
