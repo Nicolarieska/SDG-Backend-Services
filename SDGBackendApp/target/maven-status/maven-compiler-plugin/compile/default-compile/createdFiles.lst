@@ -1,8 +1,13 @@
 com\example\controller\AuthController.class
-com\example\controller\HealthController.class
+com\example\dto\TrashDepositRequest.class
 com\example\controller\UserController.class
 com\example\dto\LoginRequest.class
 com\example\BasicApplication.class
+com\example\model\TrashDeposit.class
+com\example\controller\TrashDepositController.class
+com\example\controller\HealthController.class
+com\example\repository\TrashDepositRepository.class
 com\example\dto\AuthResponse.class
 com\example\dto\RegisterRequest.class
 com\example\service\UserService.class
+com\example\service\TrashDepositService.class

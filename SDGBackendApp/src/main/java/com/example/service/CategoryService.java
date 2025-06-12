@@ -24,47 +24,67 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     public Category createCategory(CategoryRequest request) {
-        if (categoryRepository.findByName(request.getName()).isPresent()) {
-            throw new IllegalArgumentException("Category With Name '" + request.getName() + "' Already Exists.");
+        try {
+            if (categoryRepository.findByName(request.getName()).isPresent()) {
+                throw new IllegalArgumentException("Category With Name '" + request.getName() + "' Already Exists.");
+            }
+
+            Category category = new Category();
+            category.setName(request.getName());
+            category.setDescription(request.getDescription());
+            category.setPoint(request.getPoint());
+
+            return categoryRepository.save(category);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create category: " + e.getMessage(), e);
         }
-
-        Category category = new Category();
-        category.setName(request.getName());
-        category.setDescription(request.getDescription());
-        category.setPoint(request.getPoint());
-
-        return categoryRepository.save(category);
     }
 
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        try {
+            return categoryRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch categories: " + e.getMessage(), e);
+        }
     }
 
     public Category getCategoryById(int id) {
-        return categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category With ID " + id + " Not Found."));
+        try {
+            return categoryRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Category With ID " + id + " Not Found."));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get category by ID: " + e.getMessage(), e);
+        }
     }
 
     public Category updateCategory(int id, CategoryRequest request) {
-        Category existingCategory = categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category with ID " + id + " not found."));
+        try {
+            Category existingCategory = categoryRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Category with ID " + id + " not found."));
 
-        if (!existingCategory.getName().equals(request.getName())
-                && categoryRepository.findByName(request.getName()).isPresent()) {
-            throw new IllegalArgumentException("Category with name '" + request.getName() + "' Already Exists.");
+            if (!existingCategory.getName().equals(request.getName())
+                    && categoryRepository.findByName(request.getName()).isPresent()) {
+                throw new IllegalArgumentException("Category with name '" + request.getName() + "' Already Exists.");
+            }
+
+            existingCategory.setName(request.getName());
+            existingCategory.setDescription(request.getDescription());
+            existingCategory.setPoint(request.getPoint());
+
+            return categoryRepository.save(existingCategory);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to update category: " + e.getMessage(), e);
         }
-
-        existingCategory.setName(request.getName());
-        existingCategory.setDescription(request.getDescription());
-        existingCategory.setPoint(request.getPoint());
-
-        return categoryRepository.save(existingCategory);
     }
 
     public void deleteCategory(int id) {
-        Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category With ID " + id + " Not Found."));
+        try {
+            Category category = categoryRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Category With ID " + id + " Not Found."));
 
-        categoryRepository.delete(category);
+            categoryRepository.delete(category);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete category: " + e.getMessage(), e);
+        }
     }
 }

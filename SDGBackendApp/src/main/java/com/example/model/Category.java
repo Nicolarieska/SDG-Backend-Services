@@ -4,11 +4,17 @@
  */
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +37,11 @@ public class Category {
 
     @Column(nullable = false)
     private int point;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<TrashDeposit> trashDeposits = new ArrayList<>();
 
     public Category() {
 
@@ -66,5 +77,13 @@ public class Category {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public List<TrashDeposit> getTrashDeposits() {
+        return trashDeposits;
+    }
+
+    public void setTrashDeposits(List<TrashDeposit> trashDeposits) {
+        this.trashDeposits = trashDeposits;
     }
 }
