@@ -31,7 +31,7 @@ public class UserAuthService implements UserDetailsService {
                 orElseThrow(()
                         -> new UsernameNotFoundException("User Not Found"));
 
-        List<GrantedAuthority> authorities = List.of(
+        List<GrantedAuthority> authorities = java.util.Collections.singletonList(
                 new SimpleGrantedAuthority(u.getRole())
         );
 
