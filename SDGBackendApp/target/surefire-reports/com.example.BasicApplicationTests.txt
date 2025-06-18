@@ -1,4 +1,37 @@
 -------------------------------------------------------------------------------
 Test set: com.example.BasicApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.479 s - in com.example.BasicApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 38.673 s <<< FAILURE! - in com.example.BasicApplicationTests
+contextLoads(com.example.BasicApplicationTests)  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: 
+Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [com/example/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method of(String) is undefined for the type List
+	The method of(String, String, String, String, String) is undefined for the type List
+	The method of(String) is undefined for the type List
+
+Caused by: org.springframework.beans.BeanInstantiationException: 
+Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [com/example/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method of(String) is undefined for the type List
+	The method of(String, String, String, String, String) is undefined for the type List
+	The method of(String) is undefined for the type List
+
+Caused by: org.springframework.beans.factory.BeanCreationException: 
+Error creating bean with name 'corsConfigurationSource' defined in class path resource [com/example/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method of(String) is undefined for the type List
+	The method of(String, String, String, String, String) is undefined for the type List
+	The method of(String) is undefined for the type List
+
+Caused by: org.springframework.beans.BeanInstantiationException: 
+Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method of(String) is undefined for the type List
+	The method of(String, String, String, String, String) is undefined for the type List
+	The method of(String) is undefined for the type List
+
+Caused by: java.lang.Error: 
+Unresolved compilation problems: 
+	The method of(String) is undefined for the type List
+	The method of(String, String, String, String, String) is undefined for the type List
+	The method of(String) is undefined for the type List
+
+
